@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "ratbrain"
+version = "0.1.0"
+description = "Experiments on the RatBrain dataset"
+authors = ["Najib Ishaq <najib_ishaq@zoho.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ratbrain", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+bfio = { version = "^2.3.3", extras = ["all"] }
+filepattern = "^2.0.4"
+preadator = "0.4.0-dev2"
+typer = { version = "^0.9.0", extras = ["all"] }
+tqdm = "^4.66.1"
+pandas = "^2.1.4"
+solara = "^1.25.0"
+
+[tool.poetry.group.dev.dependencies]
+bump2version = "^1.0.1"
+pre-commit = "^3.6.0"
+pytest = "^7.4.3"
+pytest-sugar = "^0.9.7"
+pytest-xdist = "^3.5.0"
+pytest-benchmark = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

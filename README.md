@@ -1,2 +1,3 @@
-# ratbrain
-Experiments on the RadBrain dataset
+# RatBrain Experiments
+
+Experiments on the RatBrain dataset
