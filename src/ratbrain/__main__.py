@@ -35,6 +35,15 @@ def main(
     """Run some experiments with the RatBrain dataset."""
     logger.info(f"Data directory: {data_dir}")
 
+    # Columns in "Supplementary Table 7.xlsx" are:
+    # ['ID', 'centroid_x', 'centroid_y', 'xmin', 'ymin', 'xmax', 'ymax',
+    #    'NeuN', 'S100', 'Olig2', 'Iba1', 'RECA1', 'Cleaved Caspase-3',
+    #    'Tyrosine Hydroxylase', 'Blood Brain Barrier', 'GFP', 'PDGFR beta',
+    #    'Parvalbumin', 'Choline Acetyltransferase', 'GFAP',
+    #    'Smooth Muscle Actin', 'Glutaminase', 'Doublecortin', 'Sox2', 'PCNA',
+    #    'Vimentin', 'GAD67', 'Tbr1', 'Eomes', 'Calretinin', 'Nestin',
+    #    'Aquaporin-4', 'Calbindin']
+
 
 if __name__ == "__main__":
     app()
