@@ -18,6 +18,7 @@ from polus.plugins.visualization.precompute_slide.__main__ import (
     main as precompute_slide_main,
 )
 
+from ratbrain.run_mist import main as mist_docker_main
 from ratbrain.utils import constants
 
 # Initialize the logger
@@ -79,6 +80,9 @@ def main(  # noqa: PLR0915, C901, PLR0912
     num_channels = 11
     num_xs = 22
     num_ys = 15
+
+    mist_pattern = "S1_R1_C1-C11_A1_y0{rr}_x0{cc}_c000.ome.tif"
+    base_vector_name = "img-global-positions-1.txt"
 
     if single_replicate:
         num_images = num_channels
@@ -226,12 +230,43 @@ def main(  # noqa: PLR0915, C901, PLR0912
             preview=False,
         )
 
+    if delete_intermediates:
+        logger.info("Deleting intermediate FOV files.")
+        shutil.rmtree(fovs_dir)
+        shutil.rmtree(ff_dir)
+
     # Use the MIST plugin to get a stitching vector
     logger.info("Getting stitching vector...")
 
     vector_dir = data_dir / "stitching-vector"
     vector_dir.mkdir(exist_ok=True)
-    logger.info("TODO")
+    base_vector_path = vector_dir / base_vector_name
+
+    if base_vector_path.exists():
+        logger.info("Stitching vector already exists. Skipping.")
+    else:
+        mist_docker_main(
+            data_dir=data_dir,
+            docker_image_name="wipp/mist:2.0.7",
+            image_dir=fovs_corrected_dir.name,
+            filename_pattern_type="ROWCOL",
+            filename_pattern=mist_pattern,
+            grid_origin="UL",
+            grid_width=num_xs,
+            grid_height=num_ys,
+            start_tile_row=0,
+            start_tile_col=0,
+            start_row=0,
+            start_col=0,
+            extent_width=num_xs,
+            extent_height=num_ys,
+            is_time_slices=False,
+            assemble_no_overlap=True,
+            stage_repeatability=1,
+            overlap_uncertainty=1,
+            program_type="java",
+            output_path=vector_dir.name,
+        )
 
     # Recycle the stitching vector for all channels and replicates
     logger.info("Recycling stitching vector for all channels and replicates...")

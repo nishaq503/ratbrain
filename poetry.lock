@@ -2278,7 +2278,7 @@ typer = {version = "^0.7.0", extras = ["all"]}
 type = "git"
 url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "updates/apply-flatfield"
-resolved_reference = "d422a6eace50110e47923dda3c904867596a61c4"
+resolved_reference = "f5677281b3ad27f49d1c67906b5166731221a1e2"
 subdirectory = "transforms/images/apply-flatfield-plugin"
 [[package]]
 name = "polus-plugins-transforms-images-image-assembler"

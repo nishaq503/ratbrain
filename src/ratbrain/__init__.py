@@ -1,5 +1,6 @@
 """Run some experiments with the RatBrain dataset."""
 
+from . import run_mist
 from . import utils
 
 __version__ = "0.1.0"
@@ -14,5 +15,6 @@ __credits__ = [
 ]
 
 __all__ = [
+    "run_mist",
     "utils",
 ]
