@@ -2215,13 +2215,14 @@ version = "0.3.2"
 description = "Convert BioFormats datatypes to ome.tif or ome.zarr file format"
 category = "main"
 optional = false
-python-versions = "^3.9"
+python-versions = ">=3.9,<3.12"
 files = []
 develop = false
 
 [package.dependencies]
-bfio = {version = "2.3.3", extras = ["all"]}
-filepattern = "2.0.4"
+bfio = {version = "^2.3.3", extras = ["all"]}
+filepattern = "^2.0.4"
+preadator = "0.4.0-dev2"
 tqdm = "^4.64.1"
 typer = "^0.7.0"
 
@@ -2229,7 +2230,7 @@ typer = "^0.7.0"
 type = "git"
 url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "update/ome-converter"
-resolved_reference = "cbfbbcdab0889664418a7ccc1554bce4d2d88b71"
+resolved_reference = "72fbe0e4d0a2dc5a90e70ec45ec5e70bc4f397b6"
 subdirectory = "formats/ome-converter-plugin"
 [[package]]
 name = "polus-plugins-regression-basic-flatfield-estimation"
@@ -2325,7 +2326,7 @@ typer = "^0.7.0"
 type = "git"
 url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "updates/precompute-slide-plugin"
-resolved_reference = "9a28be33ccd784febf0e3635358ebc4b2eb23f9e"
+resolved_reference = "d4db5eff97f1b00116ad5cc5cb06c15e291b0674"
 subdirectory = "visualization/precompute-slide-plugin"
 [[package]]
 name = "pooch"
