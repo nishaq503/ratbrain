@@ -15,7 +15,8 @@ preadator = "0.4.0-dev2"
 typer = { version = "^0.7.0", extras = ["all"] }
 tqdm = "^4.66.1"
 polus-plugins-formats-ome-converter = {git = "https://github.com/nishaq503/polus-plugins.git", rev = "update/ome-converter", subdirectory = "formats/ome-converter-plugin"}
-polus-plugins-formats-czi-extract = {git = "https://github.com/hamshkhawar/polus-plugins.git", rev = "update_czi", subdirectory = "formats/czi-extract-plugin"}
+# polus-plugins-formats-czi-extract = {git = "https://github.com/hamshkhawar/polus-plugins.git", rev = "update_czi", subdirectory = "formats/czi-extract-plugin"}
+polus-plugins-formats-czi-extract = {git = "https://github.com/nishaq503/polus-plugins.git", rev = "updates/czi-extract", subdirectory = "formats/czi-extract-plugin"}
 polus-plugins-regression-basic-flatfield-estimation = {git = "https://github.com/nishaq503/polus-plugins.git", rev = "updates/basic-estimation", subdirectory = "regression/basic-flatfield-estimation-plugin"}
 polus-plugins-transforms-images-apply-flatfield = {git = "https://github.com/nishaq503/polus-plugins.git", rev = "updates/apply-flatfield", subdirectory = "transforms/images/apply-flatfield-plugin"}
 polus-plugins-transforms-images-image-assembler = {git = "https://github.com/agerardin/polus-plugins.git", rev = "final/image_assembler", subdirectory = "transforms/images/image-assembler-plugin"}

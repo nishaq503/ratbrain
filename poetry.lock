@@ -2205,9 +2205,9 @@ typer = "^0.7.0"
 
 [package.source]
 type = "git"
-url = "https://github.com/hamshkhawar/polus-plugins.git"
-reference = "update_czi"
-resolved_reference = "f0f3c69f89d44e7852ef1f506c33d2c1bc114702"
+url = "https://github.com/nishaq503/polus-plugins.git"
+reference = "updates/czi-extract"
+resolved_reference = "04b94b59c3f67fe3f84738194f6eb790354e6d5a"
 subdirectory = "formats/czi-extract-plugin"
 [[package]]
 name = "polus-plugins-formats-ome-converter"
@@ -2254,7 +2254,7 @@ typer = {version = "^0.7.0", extras = ["all"]}
 type = "git"
 url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "updates/basic-estimation"
-resolved_reference = "6236765b104167f9852d236af2887978567db1b3"
+resolved_reference = "843d36ed29eb6afab9ac41d1fcb9c62bb1b2a0ac"
 subdirectory = "regression/basic-flatfield-estimation-plugin"
 [[package]]
 name = "polus-plugins-transforms-images-apply-flatfield"
@@ -2278,7 +2278,7 @@ typer = {version = "^0.7.0", extras = ["all"]}
 type = "git"
 url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "updates/apply-flatfield"
-resolved_reference = "c7ddacc8cd529589c35bbbe86d6ccb8e3aebaae7"
+resolved_reference = "d422a6eace50110e47923dda3c904867596a61c4"
 subdirectory = "transforms/images/apply-flatfield-plugin"
 [[package]]
 name = "polus-plugins-transforms-images-image-assembler"
@@ -3827,4 +3827,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.12"
-content-hash = "e1b00fa805605a8c06984c7afaabbb11c742c79a7cce3091cce395a4d6c5b1bc"
+content-hash = "4a63e375c665b4b4f33f49bfb8be36fd6594d997eeff6dae87985de4ed7e488a"
