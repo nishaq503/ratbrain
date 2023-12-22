@@ -9,6 +9,7 @@ repos:
       - id: check-case-conflict
       - id: check-json
       - id: pretty-format-json
+        exclude: 'notebooks/.*\.ipynb$'
         args:
           - "--autofix"
           - "--indent=2"
