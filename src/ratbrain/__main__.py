@@ -2,7 +2,6 @@
 
 import logging
 import pathlib
-import shutil
 
 import filepattern
 import typer
@@ -38,11 +37,31 @@ app = typer.Typer()
 
 @app.command()
 def main(  # noqa: PLR0915, C901, PLR0912
+    original_dir: pathlib.Path = typer.Option(
+        ...,
+        "--original-dir",
+        "-o",
+        help="Path to the original data directory with the pre-stitched images.",
+        exists=True,
+        file_okay=False,
+        readable=True,
+        resolve_path=True,
+    ),
+    czi_dir: pathlib.Path = typer.Option(
+        ...,
+        "--czi-dir",
+        "-c",
+        help="Path to the CZI data directory containing the five cvi archives.",
+        exists=True,
+        file_okay=False,
+        readable=True,
+        resolve_path=True,
+    ),
     data_dir: pathlib.Path = typer.Option(
         ...,
         "--data-dir",
         "-d",
-        help="Path to the data directory.",
+        help="Path to the data directory, where all the results will be saved.",
         exists=True,
         file_okay=False,
         readable=True,
@@ -55,30 +74,14 @@ def main(  # noqa: PLR0915, C901, PLR0912
         "-s",
         help="Run only on a single replicate from the dataset.",
     ),
-    delete_intermediates: bool = typer.Option(
-        False,
-        "--delete-intermediates",
-        "-D",
-        help="Delete intermediate files after processing.",
-    ),
 ) -> None:
     """Run some experiments with the RatBrain dataset."""
+    logger.info("Starting RatBrain CLI...")
+
+    logger.info(f"Original data directory: {original_dir}")
+    logger.info(f"CZI data directory: {czi_dir}")
     logger.info(f"Data directory: {data_dir}")
-
-    original_dir = data_dir / "original"
-    if not original_dir.exists():
-        msg = f"Original data directory does not exist: {original_dir}"
-        logger.error(msg)
-        raise FileNotFoundError(msg)
-
-    czi_dir = data_dir / "RB_50-plex-IHC"
-    if not czi_dir.exists():
-        msg = f"RatBrain CZI data directory does not exist: {czi_dir}"
-        logger.error(msg)
-        raise FileNotFoundError(msg)
-
-    # Use the ome-converter plugin to convert the original images to OME-TIFF
-    logger.info("Converting original images to OME-TIFF...")
+    logger.info(f"Single replicate: {single_replicate}")
 
     num_replicates = 5
     num_channels = 11
@@ -133,6 +136,9 @@ def main(  # noqa: PLR0915, C901, PLR0912
 
     num_fovs = num_images * num_xs * num_ys
 
+    # Use the ome-converter plugin to convert the original images to OME-TIFF
+    logger.info("Converting original images to OME-TIFF...")
+
     original_ome_dir = data_dir / "original-ome"
     original_ome_dir.mkdir(exist_ok=True)
 
@@ -178,10 +184,6 @@ def main(  # noqa: PLR0915, C901, PLR0912
         for _, [file] in pre_zaar_fp():
             if ".ome.zarr" not in file.name:
                 file.rename(file.name + ".ome.zarr")
-
-    if delete_intermediates:
-        logger.info("Deleting intermediate original OME-TIFF files.")
-        shutil.rmtree(original_ome_dir)
 
     # Use the czi-extract plugin to extract the CZI files into FOVs
     fovs_dir = data_dir / "fovs"
@@ -247,11 +249,6 @@ def main(  # noqa: PLR0915, C901, PLR0912
             out_dir=fovs_corrected_dir,
             preview=False,
         )
-
-    if delete_intermediates:
-        logger.info("Deleting intermediate FOV files.")
-        shutil.rmtree(fovs_dir)
-        shutil.rmtree(ff_dir)
 
     # Use the MIST plugin to get a stitching vector
     logger.info("Getting stitching vector...")
