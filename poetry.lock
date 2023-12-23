@@ -2300,9 +2300,9 @@ typer = "^0.7.0"
 
 [package.source]
 type = "git"
-url = "https://github.com/agerardin/polus-plugins.git"
+url = "https://github.com/nishaq503/polus-plugins.git"
 reference = "final/image_assembler"
-resolved_reference = "37b2ecf63f2ecc34c4784eefd5fa4fdca3987722"
+resolved_reference = "92a88ce59b1a4c54cf8fff526f2a3db6bf4893ab"
 subdirectory = "transforms/images/image-assembler-plugin"
 [[package]]
 name = "polus-plugins-visualization-precompute-slide"
@@ -3827,4 +3827,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.12"
-content-hash = "4a63e375c665b4b4f33f49bfb8be36fd6594d997eeff6dae87985de4ed7e488a"
+content-hash = "02c26289e89fb909485008079f873dbca6bf0b6b21b485ff29bce7865743e812"
